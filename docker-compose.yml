@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Mock Medical News Site (WHO/FDA simulator)
+  mock-site:
+    build:
+      context: .
+      dockerfile: Dockerfile.mocksite
+    container_name: bio-watcher-mock-site
+    ports:
+      - "5000:5000"
+    networks:
+      - bio-watcher-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/alerts"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Pathway Backend with Agent
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bio-watcher-backend
+    ports:
+      - "8765:8765"
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - EXTERNAL_NEWS_URL=http://mock-site:5000/alerts
+      - PATHWAY_DATA_DIR=/app/data/hospital_docs
+    volumes:
+      # Mount data directory for live file watching
+      - ./data/hospital_docs:/app/data/hospital_docs
+      # Mount for persistent cache
+      - pathway-cache:/app/.pathway_cache
+    networks:
+      - bio-watcher-network
+    depends_on:
+      - mock-site
+    restart: unless-stopped
+
+  # Optional: Frontend Dashboard
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bio-watcher-dashboard
+    ports:
+      - "3000:3000"
+    networks:
+      - bio-watcher-network
+    depends_on:
+      - backend
+    restart: unless-stopped
+    profiles:
+      - with-ui
+
+networks:
+  bio-watcher-network:
+    driver: bridge
+
+volumes:
+  pathway-cache:
+    driver: local

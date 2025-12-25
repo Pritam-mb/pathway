@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Pathway cache
+.pathway_cache/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (except examples)
+data/hospital_docs/*.txt
+data/hospital_docs/*.pdf
+data/hospital_docs/*.docx
+!data/hospital_docs/.gitkeep
+
+# Mock site state
+backend/mock_site/alerts_state.json
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+.vite/
+
+# Logs
+*.log
+logs/

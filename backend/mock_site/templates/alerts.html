@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Safety Alerts</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f7fafc;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .last-updated {
+            color: #718096;
+            font-size: 0.9em;
+        }
+        .alerts {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .alert {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #718096;
+        }
+        .alert.critical {
+            border-left-color: #f56565;
+            background: #fff5f5;
+        }
+        .alert.warning {
+            border-left-color: #ed8936;
+            background: #fffaf0;
+        }
+        .alert.info {
+            border-left-color: #4299e1;
+            background: #ebf8ff;
+        }
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        .alert-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        .alert-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85em;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge.who { background: #c6f6d5; color: #22543d; }
+        .badge.fda { background: #bee3f8; color: #2c5282; }
+        .badge.cdc { background: #feebc8; color: #7c2d12; }
+        .alert-content {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Medical Safety Alerts</h1>
+            <p class="last-updated">Last updated: <span id="timestamp"></span></p>
+        </header>
+        
+        <div class="alerts">
+            {% for alert in alerts %}
+            <div class="alert {{ alert.severity }}">
+                <div class="alert-meta">
+                    <span class="badge {{ alert.source.lower() }}">{{ alert.source }}</span>
+                    <span>{{ alert.date }}</span>
+                    <span>Alert ID: #{{ alert.id }}</span>
+                </div>
+                <div class="alert-header">
+                    <h2 class="alert-title">{{ alert.title }}</h2>
+                </div>
+                <div class="alert-content">
+                    {{ alert.content }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script>
+        // Update timestamp
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        
+        // Auto-refresh every 30 seconds to catch updates
+        setTimeout(() => location.reload(), 30000);
+    </script>
+</body>
+</html>

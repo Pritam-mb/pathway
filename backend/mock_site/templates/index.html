@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical News Alert System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        .info-card {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .info-card h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .info-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .feature {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .feature h4 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 Medical News Alert System</h1>
+        <p class="subtitle">Real-time medical safety alerts and guidelines</p>
+        
+        <div class="nav">
+            <a href="/alerts" class="btn btn-primary">View Current Alerts</a>
+        </div>
+        
+        <div class="info-card">
+            <h3>About This System</h3>
+            <p>
+                This is a mock medical news aggregator simulating WHO, FDA, and CDC alert systems. 
+                It serves as an external data source for the Bio-Watcher clinical intelligence system, 
+                demonstrating real-time knowledge ingestion and agentic reasoning.
+            </p>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature">
+                <h4>🌍 WHO Alerts</h4>
+                <p>Global health safety updates</p>
+            </div>
+            <div class="feature">
+                <h4>💊 FDA Warnings</h4>
+                <p>Drug safety notifications</p>
+            </div>
+            <div class="feature">
+                <h4>📊 CDC Guidelines</h4>
+                <p>Clinical best practices</p>
+            </div>
+            <div class="feature">
+                <h4>⚡ Real-time</h4>
+                <p>Instant update propagation</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
