@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     
     # External Sources
     external_news_url: str = "http://localhost:5000/alerts"
+    external_news_sources: list = ["MOCK:http://localhost:5000/alerts"]
     
     # LLM Configuration
     llm_model: str = "gemini-1.5-flash"

@@ -25,6 +25,36 @@ bio-watcher/
 └── config/                  # Configuration files
 ```
 
+## 🌐 Real Data Sources (NEW!)
+
+Bio-Watcher can now scrape **real WHO/FDA/CDC websites**:
+
+- ✅ **WHO Disease Outbreak News** - Live global health threats
+- ✅ **FDA Drug Safety Communications** - Real drug warnings  
+- ✅ **CDC Health Alert Network** - US health alerts
+- ✅ **Mock Site** - Controllable demo (recommended for hackathon)
+
+**Test real scrapers:**
+```powershell
+python scripts/test_real_scrapers.py
+```
+
+**Enable real sources in `.env`:**
+```bash
+# Hybrid (recommended for demo)
+EXTERNAL_NEWS_SOURCES=WHO,FDA,MOCK:http://localhost:5000/alerts
+
+# Production (all real)
+EXTERNAL_NEWS_SOURCES=WHO,FDA,CDC
+
+# Demo only (controllable)
+EXTERNAL_NEWS_SOURCES=MOCK:http://localhost:5000/alerts
+```
+
+See [REAL_DATA_SOURCES.md](REAL_DATA_SOURCES.md) for complete guide.
+
+---
+
 ## 🚀 Quick Start
 
 ### ⚡ **Option 1: Docker (EASIEST - Recommended!)**
